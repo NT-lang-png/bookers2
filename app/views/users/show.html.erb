@@ -1,0 +1,57 @@
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>errors prohibited this obj from being saved:
+  <% @book.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
+<div>
+  <h2>User info</h2>
+  <%#= image_tag @user.get_image(100,100) %>
+  <table>
+    <tr>
+      <th>name</th>
+      <th><%= @user.name %></th>
+    </tr>
+    <tr>
+      <th>Introduction</th>
+    </tr>
+  </table>
+  <P><%= link_to"編集ボタン",edit_user_path(@user) %></P>
+</div>
+
+<div>
+  <h2>New book</h2>
+  <%= form_with model: @book, url: books_path, method: :post do |f| %>
+    <h4>Title</h4>
+    <%= f.text_field :title %>
+    <h4>Opinion</h4>
+    <%= f.text_area :body %>
+    
+    <%= f.submit 'Create Book' %>
+  <% end %>
+</div>
+
+<div>
+  <h2>Books</h2>
+   
+  <table>
+   
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+    </tr>
+   
+    <% @user.books.each do |book| %>
+   
+    <tr>
+     <td><%= image_tag book.user.get_image(100,100) %></td>
+     <td><%=link_to book.title, book_path(book.id) %></td>
+     <td><%= book.body %></td>
+    </tr>
+    
+    <% end %>
+  </table>
+         
+</div>
