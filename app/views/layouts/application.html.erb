@@ -5,13 +5,19 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    
+    <script src="https://kit.fontawesome.com/5437992f41.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
   <header>
+    <div class = "navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class ="container">
+        <a class = "nav-barbrand" href="/">Bookers</a>
+      </div>
+    </div>
     <% if user_signed_in? %>
       <li>
         <%= link_to "Home",user_show_path(current_user) %>
