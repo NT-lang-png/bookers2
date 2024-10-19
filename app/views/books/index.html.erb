@@ -1,3 +1,18 @@
+<% if @book.errors.any? %>
+  <%= @book.errors.count %> error prohibited this obj from being saved:
+
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<!--ユーザーのインフォメーションとニューブック-->
+<%= render 'books/current_user', user: @user, book: @book %>
+
+
 <div>
   <h2>Books</h2>
   <table>
@@ -9,6 +24,7 @@
   <% @books.each do |book| %>
     <tr>
       <td><%= image_tag book.user.get_image(100,100) %></td>
+      <td><%= link_to'book.user.name',user_show_path(book.user.id %></td>
       <td><%= book.title %></td>
       <td><%= book.body %></td>
     </tr>

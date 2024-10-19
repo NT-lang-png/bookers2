@@ -17,8 +17,6 @@ class User < ApplicationRecord
   end
   
   validates :name, length: { minimum: 2 }
-  validates :email, presence: true
-  validates :image, presence: true
   
   
 end

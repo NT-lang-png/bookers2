@@ -2,6 +2,27 @@
   <%= flash[:notice] %>
 </div>
 
+<div>
+  <h2>User info</h2>
+  <%= image_tag @book.user.get_image(100,100) %>
+  <table>
+    <tr>
+      <th>name</th>
+      <th><%= @book.user.name %></th>
+    </tr>
+    <tr>
+      <th>introduction</th>
+      <th><%= @book.user.introduction %></th>
+    </tr>
+  </table>
+  <p>
+  <% if @book.user == current_user %>
+    <%= link_to"編集ボタン",edit_user_path(@book.user.id) %>
+    <% else %>
+    <%= link_to"編集ボタン",user_show_path(current_user.id) %>
+  <% end %>
+  </p>
+</div>
 
 
 <h2>Book detail</h2>
@@ -18,7 +39,16 @@
     </td>
     <td><%= @book.title %></td>
     <td><%= @book.body %></td>
-    <td><%= link_to "Edit", edit_book_path(@book) %></td>
-    <td><%= link_to "Destroy", book_path(@book.id) ,method: :delete ,"data-confirm" => "本当に消しますか？" %></td>
+    <td>
+      <% if @book.user == current_user %>
+        <%= link_to "Edit", edit_book_path(@book.id) %>
+      <% else link_to book_path(@book.id) %>
+      <% end %>
+    </td>
+    <td>
+      <% if @book.user == current_user %>
+        <%= link_to "Destroy", book_path(@book.id) ,method: :delete ,"data-confirm" => "本当に消しますか？" %>
+      <% end %>
+    </td>
   </tr>
 </table>
