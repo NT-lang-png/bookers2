@@ -16,7 +16,7 @@ class User < ApplicationRecord
     image.variant(resize_to_limit: [width,height]).processed
   end
   
-  validates :name,  length: { minimum: 2 }
+  validates :name, length: { minimum: 2 }
   validates :email, presence: true
   validates :image, presence: true
   

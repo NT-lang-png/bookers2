@@ -1,3 +1,7 @@
+<div>
+  <%= flash[:notice] %>
+</div>
+
 <% if @book.errors.any? %>
   <%= @book.errors.count %>errors prohibited this obj from being saved:
   <% @book.errors.full_messages.each do |message| %>
@@ -7,17 +11,17 @@
 
 <div>
   <h2>User info</h2>
-  <%#= image_tag @user.get_image(100,100) %>
+  <%= image_tag @user.get_image(100,100) %>
   <table>
     <tr>
       <th>name</th>
       <th><%= @user.name %></th>
     </tr>
     <tr>
-      <th>Introduction</th>
+      <th><%#= @user.introduction %></th>
     </tr>
   </table>
-  <P><%= link_to"編集ボタン",edit_user_path(@user) %></P>
+  <P><%= link_to"編集ボタン",edit_user_path(current_user.id) %></P>
 </div>
 
 <div>
