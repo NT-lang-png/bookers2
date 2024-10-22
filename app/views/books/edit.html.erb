@@ -1,28 +1,35 @@
-<% if @book.errors.any? %>
-  <%= @book.errors.count %> error prohibited this obj from being saved:
-  
-  <ul>
-    <% @book.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<h2>Editing Book</h2>
-
-<%= form_with model: @book, url:book_path(@book), method: :patch do |f| %>
-   <h4>Title</h4>
-    <%= f.text_field :title %>
-    <h4>Opinion</h4>
-    <%= f.text_area :body %>
-
-    <%= f.submit 'Update Book' %>
-  <% end %>
-  
-  <div>
-    <%= link_to "Show", book_path(@book.id) %>
-    <p>|</p>
-    <%= link_to "Back", books_path %>
+<div class ="container">
+  <div class="row">
+    <div class ="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>Editing Book</h2>
+      <% if @book.errors.any? %>
+        <%= @book.errors.count %> error prohibited this obj from being saved:
+      <ul>
+        <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+      <% end %>  
+      <%= form_with model: @book, url:book_path(@book), method: :patch do |f| %>
+      <div>
+        <div class="form-group">
+          <h4>Title</h4>
+          <%= f.text_field :title %>
+        </div>
+        <div class="form-group">
+          <h4>Opinion</h4>
+          <%= f.text_area :body %>
+        </div>
+        <div class="form-group">
+          <input type ="submit" name="commit" class ="btn btn-success" data-disable-with ="Update Book" value ="Update Book">
+        </div>
+        <% end %>
+      </div>
+      <div class ="container">
+        <%= link_to "Show", book_path(@book.id) %>
+        |
+        <%= link_to "Back", books_path %>
+      </div>
+    </div>
   </div>
-  
 </div>
