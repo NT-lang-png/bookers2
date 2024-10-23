@@ -7,6 +7,10 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    #条件分岐
+    unless @user.id == current_user.id
+      redirect_to user_show_path(current_user.id)
+    end
   end
   
   def update
@@ -29,5 +33,6 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :introduction, :image)
   end
+  
 
 end
