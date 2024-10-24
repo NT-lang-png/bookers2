@@ -17,6 +17,7 @@ class BooksController < ApplicationController
   end
 
   def index
+    @user = current_user
     @book = Book.new
     @books = Book.all
   end
@@ -24,6 +25,7 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @book_new = Book.new
+    @user = @book.user #@user = User.find(params[:id])だと、@book = Book.find(params[:id])で使われているbookのidをuserで探してしまう
   end
 
   def edit

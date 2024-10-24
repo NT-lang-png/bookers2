@@ -9,30 +9,31 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     #条件分岐
     unless @user.id == current_user.id
-      redirect_to user_show_path(current_user.id)
+      redirect_to user_path(current_user.id)
     end
   end
-  
+
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] ="You have updated user successfully."
-      redirect_to user_show_path(current_user.id)
+      redirect_to user_path(current_user.id)
     else
       render :edit
     end
   end
 
   def index
+    @user = current_user
     @users = User.all
-    @book = Book.new
+    @book = Book.new 
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :introduction, :image)
+    params.require(:user).permit(:name, :introduction, :profile_image)
   end
-  
+
 
 end
