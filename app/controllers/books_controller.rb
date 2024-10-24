@@ -12,6 +12,7 @@ class BooksController < ApplicationController
       redirect_to book_path(@book)
     else
       @books = Book.all
+      @user = current_user
       render :index
     end
   end
@@ -25,7 +26,7 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @book_new = Book.new
-    @user = @book.user #@user = User.find(params[:id])だと、@book = Book.find(params[:id])で使われているbookのidをuserで探してしまう
+    @user = @book.user
   end
 
   def edit
